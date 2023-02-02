@@ -11,7 +11,7 @@ Chance = 5
 data = pandas.read_csv("50_states.csv")
 states = (data['state'].to_list())
 correct_answers = []
-missed_answer = []
+
 
 while Chance != 0:
     answer_state = screen.textinput(title=f"{(Chance)}/5", prompt="What's another state name").title()
@@ -19,6 +19,11 @@ while Chance != 0:
     Chance -= 1
     print(f"Chance left:{Chance}")
     if answer_state == "Exit":
+        missed_answer = []
+        missed_answer=[state for state in states if   state not in correct_answers]
+        new_data = pandas.DataFrame(missed_answer)
+        new_data.to_csv("State_to_learn.csv")
+
         break
     if answer_state in states:
         correct_answers.append(answer_state)
@@ -33,11 +38,11 @@ while Chance != 0:
         score += 1
 # print(correct_answers)
 # print(missed_answer)
-for state in states:
-    if state not in correct_answers:
-        missed_answer.append(state)
-new_data = pandas.DataFrame(missed_answer)
-new_data.to_csv("State_to_learn.csv")
+# for state in states:
+#     if state not in correct_answers:
+#         missed_answer.append(state)
+# new_data = pandas.DataFrame(missed_answer)
+# new_data.to_csv("State_to_learn.csv")
 
 # screen.exitonclick()
 

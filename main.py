@@ -12,7 +12,6 @@ data = pandas.read_csv("50_states.csv")
 states = (data['state'].to_list())
 correct_answers = []
 
-
 while Chance != 0:
     answer_state = screen.textinput(title=f"{(Chance)}/5", prompt="What's another state name").title()
     print(f"answer_state:{answer_state}")
